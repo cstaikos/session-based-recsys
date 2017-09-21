@@ -10,6 +10,7 @@ from theano import function
 from theano.sandbox.rng_mrg import MRG_RandomStreams as RandomStreams
 import numpy as np
 import pandas as pd
+import datetime
 from collections import OrderedDict
 srng = RandomStreams()
 class GRU4Rec:
@@ -536,10 +537,10 @@ class GRU4Rec:
                         self.H[i].set_value(tmp, borrow=True)
             avgc = np.mean(c)
             if np.isnan(avgc):
-                print('Epoch {}: NaN error!'.format(str(epoch)))
+                print(datetime(2009, 1, 6, 15, 8, 24, 78915) + ' Epoch {}: NaN error!'.format(str(epoch)))
                 self.error_during_train = True
                 return
-            print('Epoch{}\tloss: {:.6f}'.format(epoch, avgc))
+            print(datetime(2009, 1, 6, 15, 8, 24, 78915) + ' Epoch{}\tloss: {:.6f}'.format(epoch, avgc))
     def predict_next_batch(self, session_ids, input_item_ids, predict_for_item_ids=None, batch=100):
         '''
         Gives predicton scores for a selected set of items. Can be used in batch mode to predict for multiple independent events (i.e. events of different sessions) at once and thus speed up evaluation.
